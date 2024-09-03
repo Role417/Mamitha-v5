@@ -172,8 +172,15 @@ async def start(client, message):
                     )
     )
     replied = ok.id    
-    da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
-    await asyncio.sleep(4)
+    da = await client.send_photo(photo=IMP_IMG, chat_id = message.from_user.id, caption=f"<b>❗️❗️IMPORTANT❗️❗️\n\n Tʜɪs Fɪʟᴇ Wɪʟʟ Bᴇ Dᴇʟᴇᴛᴇᴅ Fʀᴏᴍ Hᴇʀᴇ Wɪᴛʜɪɴ 10 Mɪɴᴜᴛᴇ.Pʟᴇᴀsᴇ Fᴏʀᴡᴀʀᴅ Tʜɪs Fɪʟᴇ Tᴏ Yᴏᴜʀ Sᴀᴠᴇᴅ Mᴇssᴀɢᴇs Oʀ Aɴʏ Cʜᴀᴛ Aɴᴅ Sᴛᴀʀᴛ Dᴏᴡɴʟᴏᴀᴅ Tʜᴇʀᴇ.</b>", reply_to_message_id=replied(
+                    [[
+                        InlineKeyboardButton('𝙼𝙰𝙻', callback_data='mallu'),
+                        InlineKeyboardButton('𝚃𝙰𝙼', callback_data='tamilu'),
+                        InlineKeyboardButton('𝙷𝙸𝙽', callback_data='hindiu')
+                    ]]
+                )
+            )
+    await asyncio.sleep(6)
     await message.delete()
     await da.delete()
     await asyncio.sleep(6)
