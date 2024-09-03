@@ -175,7 +175,7 @@ async def start(client, message):
                 )
             )
     await asyncio.sleep(6)
-    await msg.delete()
+    await message.delete()
     await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
     return   
     
