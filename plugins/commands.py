@@ -30,6 +30,14 @@ fcol = fdb['forward']
 
 BATCH_FILES = {}
 
+DELETE_TXT = """𝗪𝗮𝗿𝗻𝗶𝗻𝗴 ⚠️
+
+𝖥𝗂𝗅𝖾𝗌 𝖲𝖾𝗇𝖽 𝖶𝗂𝗅𝗅 𝖡𝖾 𝖣𝖾𝗅𝖾𝗍𝖾𝖽 𝖠𝖿𝗍𝖾𝗋 5 𝖬𝗂𝗇𝗎𝗍𝖾𝗌 𝖳𝗈 𝖠𝗏𝗈𝗂𝖽 𝖢𝗈𝗉𝗒𝗋𝗂𝗀𝗁𝗍. 𝖲𝗈 𝖲𝖺𝗏𝖾 𝖳𝗁𝖾 𝖥𝗂𝗅𝖾 𝖳𝗈 𝖲𝖺𝗏𝖾𝖽 𝖬𝖾𝗌𝗌𝖺𝗀𝖾𝗌
+
+അറിയിപ്പ് ⚠️
+
+അയച്ച ഫയലുകൾ കോപ്പി റൈറ്റ് ഒഴിവാക്കാൻ വേണ്ടി 5 മിനിറ്റിനു ശേഷം ഡിലീറ്റ് ചെയ്യുന്നതാണ്. അതുകൊണ്ട് ഫയൽ സേവ്ഡ് മെസ്സേജ്സിലേക്ക് മാറ്റേണ്ടതാണ്."""
+
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):    
@@ -163,21 +171,13 @@ async def start(client, message):
                         ]
                     )
     )
-    btn = [[
-        InlineKeyboardButton("Get File Again", callback_data=f'delfile#{file_id}')
-    ]]
-    k = await client.send_photo(photo=IMP_IMG, chat_id = message.from_user.id, caption=f"<b>❗️❗️IMPORTANT❗️❗️\n\n Tʜɪs Fɪʟᴇ Wɪʟʟ Bᴇ Dᴇʟᴇᴛᴇᴅ Fʀᴏᴍ Hᴇʀᴇ Wɪᴛʜɪɴ 10 Mɪɴᴜᴛᴇ.Pʟᴇᴀsᴇ Fᴏʀᴡᴀʀᴅ Tʜɪs Fɪʟᴇ Tᴏ Yᴏᴜʀ Sᴀᴠᴇᴅ Mᴇssᴀɢᴇs Oʀ Aɴʏ Cʜᴀᴛ Aɴᴅ Sᴛᴀʀᴛ Dᴏᴡɴʟᴏᴀᴅ Tʜᴇʀᴇ.</b>", reply_markup=InlineKeyboardMarkup(
-                    [[
-                        InlineKeyboardButton('𝙼𝙰𝙻', callback_data='mallu'),
-                        InlineKeyboardButton('𝚃𝙰𝙼', callback_data='tamilu'),
-                        InlineKeyboardButton('𝙷𝙸𝙽', callback_data='hindiu')
-                    ]]
-                )
-            )
-    await asyncio.sleep(6)
+    replied = ok.id    
+    da = await message.reply(DELETE_TXT, reply_to_message_id=replied)
+    await asyncio.sleep(4)
     await message.delete()
-    await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
-    return   
+    await da.delete()
+    await asyncio.sleep(6)
+    await ok.delete()
     
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
