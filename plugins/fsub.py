@@ -121,7 +121,7 @@ async def ForceSub(bot: Client, update: Message, file_id: str = False, mode="che
 
     except FloodWait as e:
         await asyncio.sleep(e.x)
-        fix_ = await ForceSub(bot, update, file_id)
+        fix_ = await ForceSub(bot, update, message, file_id)
         return fix_
 
     except Exception as err:
