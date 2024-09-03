@@ -163,6 +163,21 @@ async def start(client, message):
                         ]
                     )
     )
+    btn = [[
+        InlineKeyboardButton("Get File Again", callback_data=f'delfile#{file_id}')
+    ]]
+    k = await client.send_photo(photo=IMP_IMG, chat_id = message.from_user.id, caption=f"<b>❗️❗️IMPORTANT❗️❗️\n\n Tʜɪs Fɪʟᴇ Wɪʟʟ Bᴇ Dᴇʟᴇᴛᴇᴅ Fʀᴏᴍ Hᴇʀᴇ Wɪᴛʜɪɴ 10 Mɪɴᴜᴛᴇ.Pʟᴇᴀsᴇ Fᴏʀᴡᴀʀᴅ Tʜɪs Fɪʟᴇ Tᴏ Yᴏᴜʀ Sᴀᴠᴇᴅ Mᴇssᴀɢᴇs Oʀ Aɴʏ Cʜᴀᴛ Aɴᴅ Sᴛᴀʀᴛ Dᴏᴡɴʟᴏᴀᴅ Tʜᴇʀᴇ.</b>", reply_markup=InlineKeyboardMarkup(
+                    [[
+                        InlineKeyboardButton('𝙼𝙰𝙻', callback_data='mallu'),
+                        InlineKeyboardButton('𝚃𝙰𝙼', callback_data='tamilu'),
+                        InlineKeyboardButton('𝙷𝙸𝙽', callback_data='hindiu')
+                    ]]
+                )
+            )
+    await asyncio.sleep(600)
+    await msg.delete()
+    await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
+    return   
     
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
